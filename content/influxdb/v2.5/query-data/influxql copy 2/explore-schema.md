@@ -2,7 +2,7 @@
 title: Explore your schema using InfluxQL
 description: Useful query syntax for exploring schema in InfluxQL.
 menu:
-  influxdb_2_4:
+  influxdb_2_5:
     name: Explore your schema
     parent: Query with InfluxQL
     identifier: explore-schema-influxql
@@ -11,9 +11,9 @@ weight: 202
 
 To explore your schema using InfluxQL, do the following:
 
-1. If you haven't already, verify or set up DBRP mappings. To do this, see [Query data with InfluxQL](/influxdb/v2.4/query-data/influxql/).
+1. If you haven't already, verify or set up DBRP mappings. To do this, see [Query data with InfluxQL](/influxdb/v2.5/query-data/influxql/).
 
-2. Next, check out **NOAA** [water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data) in the `noaa` database, which is used in examples.
+2. Next, check out **NOAA** [water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data) in the `noaa` database, which is used in examples.
 
 3. Use the following InfluxQL commands to explore your schema:
    - [SHOW SERIES](#show-series)
@@ -27,15 +27,15 @@ To explore your schema using InfluxQL, do the following:
 
 #### Examples use the InfluxQL shell
 
-Examples show how to run commands using the [InfluxQL shell](/influxdb/v2.4/tools/influxql-shell/). You can also query with InfluxQL using the [InfluxDB 1.x compatibility API](/influxdb/v2.4/reference/api/influxdb-1x/) by sending a `GET` request to the `/query` endpoint and including the command in the URL parameter `q`. Note, using the API returns results in JSON format.
+Examples show how to run commands using the [InfluxQL shell](/influxdb/v2.5/tools/influxql-shell/). You can also query with InfluxQL using the [InfluxDB 1.x compatibility API](/influxdb/v2.5/reference/api/influxdb-1x/) by sending a `GET` request to the `/query` endpoint and including the command in the URL parameter `q`. Note, using the API returns results in JSON format.
 
-For information about how to use either the InfluxQL shell or the InfluxDB API, see how to [Query a mapped bucket with InfluxQL](/influxdb/v2.4/query-data/influxql/#query-a-mapped-bucket-with-influxql).
+For information about how to use either the InfluxQL shell or the InfluxDB API, see how to [Query a mapped bucket with InfluxQL](/influxdb/v2.5/query-data/influxql/#query-a-mapped-bucket-with-influxql).
    {{% /note %}}
 
 ## `SHOW SERIES`
 
-Returns a list of [series](/influxdb/v2.4/reference/glossary/#series) for
-the specified [database](/influxdb/v2.4/reference/glossary/#database).
+Returns a list of [series](/influxdb/v2.5/reference/glossary/#series) for
+the specified [database](/influxdb/v2.5/reference/glossary/#database).
 
 ### Syntax
 
@@ -48,7 +48,7 @@ SHOW SERIES [ON <database_name>] [FROM_clause] [WHERE <tag_key> <operator> [ '<t
 `ON <database_name>` is optional.
 If the query does not include `ON <database_name>`, you must specify the
 database with the `db` query
-string parameter in the [InfluxDB API](/influxdb/v2.4/reference/api/influxdb-1x/) request.
+string parameter in the [InfluxDB API](/influxdb/v2.5/reference/api/influxdb-1x/) request.
 
 The `FROM`, `WHERE`, `LIMIT`, and `OFFSET` clauses are optional.
 The `WHERE` clause supports tag comparisons; field comparisons are not
@@ -61,11 +61,11 @@ Supported operators in the `WHERE` clause:
 `=~`&emsp;matches against
 `!~`&emsp;doesn't match against
 
-See [Explore data using InfluxQL](/influxdb/v2.4/query-data/influxql/explore-data/) for documentation on the
-[`FROM` clause](/influxdb/v2.4/query-data/influxql/explore-data/select/#from-clause),
-[`LIMIT` clause](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/),
-[`OFFSET` clause](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/),
-and [Regular Expressions](/influxdb/v2.4/query-data/influxql/explore-data/regular-expressions/).
+See [Explore data using InfluxQL](/influxdb/v2.5/query-data/influxql/explore-data/) for documentation on the
+[`FROM` clause](/influxdb/v2.5/query-data/influxql/explore-data/select/#from-clause),
+[`LIMIT` clause](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/),
+[`OFFSET` clause](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/),
+and [Regular Expressions](/influxdb/v2.5/query-data/influxql/explore-data/regular-expressions/).
 
 ### Examples
 
@@ -91,9 +91,9 @@ Output:
 | h2o_quality,location=santa_monica,randtag=3 |
 | h2o_temperature,location=coyote_creek       |
 
-The query returns all series in the `noaa` database. The query's output is similar to the [line protocol](/influxdb/v2.4/reference/syntax/line-protocol/) format.
-Everything before the first comma is the [measurement](/influxdb/v2.4/reference/glossary/#measurement) name.
-Everything after the first comma is either a [tag key](/influxdb/v2.4/reference/glossary/#tag-key) or a [tag value](/influxdb/v2.4/reference/glossary/#tag-value).
+The query returns all series in the `noaa` database. The query's output is similar to the [line protocol](/influxdb/v2.5/reference/syntax/line-protocol/) format.
+Everything before the first comma is the [measurement](/influxdb/v2.5/reference/glossary/#measurement) name.
+Everything after the first comma is either a [tag key](/influxdb/v2.5/reference/glossary/#tag-key) or a [tag value](/influxdb/v2.5/reference/glossary/#tag-value).
 The `noaa` has 5 different measurements and 13 different series.
 
 #### Run a `SHOW SERIES` query with several clauses
@@ -114,8 +114,8 @@ The `LIMIT` clause limits the number of series returned to two.
 
 ## `SHOW MEASUREMENTS`
 
-Returns a list of [measurements](/influxdb/v2.4/reference/glossary/#measurement)
-for the specified [database](/influxdb/v2.4/reference/glossary/#database).
+Returns a list of [measurements](/influxdb/v2.5/reference/glossary/#measurement)
+for the specified [database](/influxdb/v2.5/reference/glossary/#database).
 
 ### Syntax
 
@@ -127,7 +127,7 @@ SHOW MEASUREMENTS [ON <database_name>] [WITH MEASUREMENT <operator> ['<measureme
 
 `ON <database_name>` is optional.
 If the query does not include `ON <database_name>`, you must specify the
-database  with the `db` query string parameter in the [InfluxDB API](/influxdb/v2.4/reference/api/influxdb-1x/) request.
+database  with the `db` query string parameter in the [InfluxDB API](/influxdb/v2.5/reference/api/influxdb-1x/) request.
 
 The `WITH`, `WHERE`, `LIMIT` and `OFFSET` clauses are optional.
 The `WHERE` clause supports tag comparisons; field comparisons are not valid for the `SHOW MEASUREMENTS` query.
@@ -139,11 +139,11 @@ Supported operators in the `WHERE` clause:
 `=~`&emsp;matches against
 `!~`&emsp;doesn't match against
 
-See [Explore data using InfluxQL](/influxdb/v2.4/query-data/influxql/explore-data/) for documentation on the
-[`FROM` clause](/influxdb/v2.4/query-data/influxql/explore-data/select/#from-clause),
-[`LIMIT` clause](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/),
-[`OFFSET` clause](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/),
-and [Regular Expressions](/influxdb/v2.4/query-data/influxql/explore-data/regular-expressions/).
+See [Explore data using InfluxQL](/influxdb/v2.5/query-data/influxql/explore-data/) for documentation on the
+[`FROM` clause](/influxdb/v2.5/query-data/influxql/explore-data/select/#from-clause),
+[`LIMIT` clause](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/),
+[`OFFSET` clause](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/),
+and [Regular Expressions](/influxdb/v2.5/query-data/influxql/explore-data/regular-expressions/).
 
 ### Examples
 
@@ -201,8 +201,8 @@ with `h2o` and have values for the tag key `randtag` that include an integer.
 
 ## `SHOW TAG KEYS`
 
-Returns a list of [tag keys](/influxdb/v2.4/reference/glossary/#tag-key)
-associated with the specified [database](/influxdb/v2.4/reference/glossary/#database).
+Returns a list of [tag keys](/influxdb/v2.5/reference/glossary/#tag-key)
+associated with the specified [database](/influxdb/v2.5/reference/glossary/#database).
 
 ### Syntax
 
@@ -214,7 +214,7 @@ SHOW TAG KEYS [ON <database_name>] [FROM_clause] WITH KEY [ [<operator> "<tag_ke
 
 `ON <database_name>` is optional.
 If the query does not include `ON <database_name>`, you must specify the
-database with `db` query string parameter in the [InfluxDB API](/influxdb/v2.4/reference/api/influxdb-1x/) request.
+database with `db` query string parameter in the [InfluxDB API](/influxdb/v2.5/reference/api/influxdb-1x/) request.
 
 The `FROM` clause and the `WHERE` clause are optional.
 The `WHERE` clause supports tag comparisons; field comparisons are not
@@ -227,11 +227,11 @@ Supported operators in the `WHERE` clause:
 `=~`&emsp;matches against
 `!~`&emsp;doesn't match against
 
-See [Explore data using InfluxQL](/influxdb/v2.4/query-data/influxql/explore-data/) for documentation on the
-[`FROM` clause](/influxdb/v2.4/query-data/influxql/explore-data/select/#from-clause),
-[`LIMIT` clause](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/),
-[`OFFSET` clause](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/),
-and [Regular Expressions](/influxdb/v2.4/query-data/influxql/explore-data/regular-expressions/).
+See [Explore data using InfluxQL](/influxdb/v2.5/query-data/influxql/explore-data/) for documentation on the
+[`FROM` clause](/influxdb/v2.5/query-data/influxql/explore-data/select/#from-clause),
+[`LIMIT` clause](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/),
+[`OFFSET` clause](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/),
+and [Regular Expressions](/influxdb/v2.5/query-data/influxql/explore-data/regular-expressions/).
 
 ### Examples
 
@@ -293,8 +293,8 @@ Output:
 
 ## `SHOW TAG VALUES`
 
-Returns the list of [tag values](/influxdb/v2.4/reference/glossary/#tag-value)
-for the specified [tag key(s)](/influxdb/v2.4/reference/glossary/#tag-key) in the database.
+Returns the list of [tag values](/influxdb/v2.5/reference/glossary/#tag-value)
+for the specified [tag key(s)](/influxdb/v2.5/reference/glossary/#tag-key) in the database.
 
 ### Syntax
 
@@ -306,7 +306,7 @@ SHOW TAG VALUES [ON <database_name>][FROM_clause] WITH KEY [ [<operator> "<tag_k
 
 `ON <database_name>` is optional.
 If the query does not include `ON <database_name>`, you must specify the
-database with the `db` query string parameter in the [InfluxDB API](/influxdb/v2.4/reference/api/influxdb-1x/) request.
+database with the `db` query string parameter in the [InfluxDB API](/influxdb/v2.5/reference/api/influxdb-1x/) request.
 
 The `WITH` clause is required.
 It supports specifying a single tag key, a regular expression, and multiple tag keys.
@@ -322,11 +322,11 @@ Supported operators in the `WITH` and `WHERE` clauses:
 `=~`&emsp;matches against
 `!~`&emsp;doesn't match against
 
-See [Explore data using InfluxQL](/influxdb/v2.4/query-data/influxql/explore-data/) for documentation on the
-[`FROM` clause](/influxdb/v2.4/query-data/influxql/explore-data/select/#from-clause),
-[`LIMIT` clause](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/),
-[`OFFSET` clause](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/),
-and [Regular Expressions](/influxdb/v2.4/query-data/influxql/explore-data/regular-expressions/).
+See [Explore data using InfluxQL](/influxdb/v2.5/query-data/influxql/explore-data/) for documentation on the
+[`FROM` clause](/influxdb/v2.5/query-data/influxql/explore-data/select/#from-clause),
+[`LIMIT` clause](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/),
+[`OFFSET` clause](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/),
+and [Regular Expressions](/influxdb/v2.5/query-data/influxql/explore-data/regular-expressions/).
 
 ### Examples
 
@@ -368,9 +368,9 @@ The `LIMIT` clause limits the number of tag values returned to three.
 
 ## `SHOW FIELD KEYS`
 
-Returns the [field keys](/influxdb/v2.4/reference/glossary/#field-key) and the
-[data type](/influxdb/v2.4/reference/glossary/#data-type) of their
-[field values](/influxdb/v2.4/reference/glossary/#field-value).
+Returns the [field keys](/influxdb/v2.5/reference/glossary/#field-key) and the
+[data type](/influxdb/v2.5/reference/glossary/#data-type) of their
+[field values](/influxdb/v2.5/reference/glossary/#field-value).
 
 ### Syntax
 
@@ -382,15 +382,15 @@ SHOW FIELD KEYS [ON <database_name>] [FROM <measurement_name>]
 
 `ON <database_name>` is optional.
 If the query does not include `ON <database_name>`, you must specify the
-database with `USE <database_name>` when using the [InfluxQL shell](/influxdb/v2.4/tools/influxql-shell/) or with the `db` query string parameter in the [InfluxDB 1.x compatibility API](/influxdb/v2.4/reference/api/influxdb-1x/) request.
+database with `USE <database_name>` when using the [InfluxQL shell](/influxdb/v2.5/tools/influxql-shell/) or with the `db` query string parameter in the [InfluxDB 1.x compatibility API](/influxdb/v2.5/reference/api/influxdb-1x/) request.
 
 The `FROM` clause is also optional.
 See the Data Exploration page for documentation on the
-[`FROM` clause](/influxdb/v2.4/query-data/influxql/explore-data/select/#from-clause).
+[`FROM` clause](/influxdb/v2.5/query-data/influxql/explore-data/select/#from-clause).
 
 {{% note %}}
-**Note:** A field's data type [can differ](/influxdb/v2.4/reference/faq/#how-does-influxdb-handle-field-type-discrepancies-across-shards) across
-[shards](/influxdb/v2.4/reference/glossary/#shard).
+**Note:** A field's data type [can differ](/influxdb/v2.5/reference/faq/#how-does-influxdb-handle-field-type-discrepancies-across-shards) across
+[shards](/influxdb/v2.5/reference/glossary/#shard).
 If your field has more than one type, `SHOW FIELD KEYS` returns the type that
 occurs first in the following list: float, integer, string, boolean.
 {{% /note %}}
@@ -434,8 +434,8 @@ measurement in the `noaa` database.
 #### SHOW FIELD KEYS and field type discrepancies
 
 Field value
-[data types](/influxdb/v2.4/reference/glossary/#data-type)
-cannot differ within a [shard](/influxdb/v2.4/reference/glossary/#shard) but they
+[data types](/influxdb/v2.5/reference/glossary/#data-type)
+cannot differ within a [shard](/influxdb/v2.5/reference/glossary/#shard) but they
 can differ across shards.
 `SHOW FIELD KEYS` returns every data type, across every shard, associated with
 the field key. 
@@ -490,7 +490,7 @@ SHOW TAG VALUES EXACT CARDINALITY WITH KEY = "myTagKey" -->
 
 <!-- ### Filter meta queries by time
 
-When you filter meta queries by time, you may see results outside of your specified time. Meta query results are filtered at the shard level, so results can be approximately as granular as your shard group duration. If your time filter spans multiple shards, you'll get results from all shards with points in the specified time range. To review your shards and timestamps on points in the shard, run `SHOW SHARDS`. To learn more about shards and their duration, see [recommended shard groups durations](/influxdb/v2.4/reference/internals/shards/#shard-group-duration).
+When you filter meta queries by time, you may see results outside of your specified time. Meta query results are filtered at the shard level, so results can be approximately as granular as your shard group duration. If your time filter spans multiple shards, you'll get results from all shards with points in the specified time range. To review your shards and timestamps on points in the shard, run `SHOW SHARDS`. To learn more about shards and their duration, see [recommended shard groups durations](/influxdb/v2.5/reference/internals/shards/#shard-group-duration).
 
 The example below shows how to filter `SHOW TAG KEYS` by approximately one hour using a 1h shard group duration. To filter other meta data, replace `SHOW TAG KEYS` with `SHOW TAG VALUES`, `SHOW SERIES`, `SHOW FIELD KEYS`, and so on.
 

@@ -2,9 +2,9 @@
 title: The OFFSET and SOFFSET clauses
 list_title: OFFSET and SOFFSET clause
 description: >
-  Use the `OFFSET` and `SOFFSET` clauses to paginate [points](/influxdb/v2.4/reference/glossary/#point) and [series](/influxdb/v2.4/reference/glossary/#series).
+  Use the `OFFSET` and `SOFFSET` clauses to paginate [points](/influxdb/v2.5/reference/glossary/#point) and [series](/influxdb/v2.5/reference/glossary/#series).
 menu:
-  influxdb_2_4:
+  influxdb_2_5:
     name: OFFSET and SOFFSET clause
     parent: Explore data
 weight: 306
@@ -14,7 +14,7 @@ list_code_example: |
   ```
 ---
 
-Use `OFFSET` and `SOFFSET` to paginate [points](/influxdb/v2.4/reference/glossary/#point) and [series](/influxdb/v2.4/reference/glossary/#series) returned.
+Use `OFFSET` and `SOFFSET` to paginate [points](/influxdb/v2.5/reference/glossary/#point) and [series](/influxdb/v2.5/reference/glossary/#series) returned.
 
   - [The OFFSET clause](#the-offset-clause)
      - [Syntax](#syntax)
@@ -25,7 +25,7 @@ Use `OFFSET` and `SOFFSET` to paginate [points](/influxdb/v2.4/reference/glossar
 
 ## The `OFFSET` clause
 
-`OFFSET <N>` paginates `N` [points](/influxdb/v2.4/reference/glossary/#point) in the query results.
+`OFFSET <N>` paginates `N` [points](/influxdb/v2.5/reference/glossary/#point) in the query results.
 
 ### Syntax
 
@@ -59,7 +59,7 @@ Name: h2o_feet
 | 2019-08-17T00:12:00Z | 7.8870000000 | coyote_creek|
 | 2019-08-17T00:12:00Z | 2.0280000000 | santa_monica|
 
-The query returns the fourth, fifth, and sixth points from the `h2o_feet` [measurement](/influxdb/v2.4/reference/glossary/#measurement). If the query did not include `OFFSET 3`, it would return the first, second,
+The query returns the fourth, fifth, and sixth points from the `h2o_feet` [measurement](/influxdb/v2.5/reference/glossary/#measurement). If the query did not include `OFFSET 3`, it would return the first, second,
 and third points from that measurement.
 
 {{% /expand %}}
@@ -82,14 +82,14 @@ tags: location=coyote_creek
 
 This example is fairly involved, so here's the clause-by-clause breakdown:
 
-  - The [`SELECT clause`](/influxdb/v2.4/query-data/influxql/explore-data/select/) specifies the InfluxQL [MEAN() function](/influxdb/v2.4/query-data/influxql/view-functions/aggregates/#mean).
-  - The [`FROM clause`] (/influxdb/v2.4/query-data/influxql/explore-data/select/#from-clause) specifies a single measurement.
-  - The [`WHERE` clause](/influxdb/v2.4/query-data/influxql/explore-data/where/) specifies the time range for the query.
-  - The [`GROUP BY` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/) groups results by all tags  (`*`) and into 12-minute intervals.
-  - The [`ORDER BY time DESC` clause](/influxdb/v2.4/query-data/influxql/explore-data/order-by/#order-by-time-desc) returns results in descending timestamp order.
-  - The [`LIMIT 2` clause](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) limits the number of points returned to two.
+  - The [`SELECT clause`](/influxdb/v2.5/query-data/influxql/explore-data/select/) specifies the InfluxQL [MEAN() function](/influxdb/v2.5/query-data/influxql/view-functions/aggregates/#mean).
+  - The [`FROM clause`] (/influxdb/v2.5/query-data/influxql/explore-data/select/#from-clause) specifies a single measurement.
+  - The [`WHERE` clause](/influxdb/v2.5/query-data/influxql/explore-data/where/) specifies the time range for the query.
+  - The [`GROUP BY` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/) groups results by all tags  (`*`) and into 12-minute intervals.
+  - The [`ORDER BY time DESC` clause](/influxdb/v2.5/query-data/influxql/explore-data/order-by/#order-by-time-desc) returns results in descending timestamp order.
+  - The [`LIMIT 2` clause](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) limits the number of points returned to two.
   - The `OFFSET 2` clause excludes the first two averages from the query results.
-  - The [`SLIMIT 1` clause](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) limits the number of series returned to one.
+  - The [`SLIMIT 1` clause](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) limits the number of series returned to one.
 
 Without `OFFSET 2`, the query would return the first two averages of the query results:
 
@@ -110,7 +110,7 @@ tags: location=coyote_creek
 
 ## The `SOFFSET` clause
 
-`SOFFSET <N>` paginates `N` [series](/influxdb/v2.4/reference/glossary/#series) in the query results.
+`SOFFSET <N>` paginates `N` [series](/influxdb/v2.5/reference/glossary/#series) in the query results.
 
 ### Syntax
 
@@ -118,8 +118,8 @@ tags: location=coyote_creek
 SELECT_clause FROM_clause [WHERE_clause] GROUP BY *[,time(time_interval)] [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] SLIMIT_clause SOFFSET <N>
 ```
 
-`N` specifies the number of [series](/influxdb/v2.4/reference/glossary/#series) to paginate.
-The `SOFFSET` clause requires an [`SLIMIT` clause](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/.
+`N` specifies the number of [series](/influxdb/v2.5/reference/glossary/#series) to paginate.
+The `SOFFSET` clause requires an [`SLIMIT` clause](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/.
 Using the `SOFFSET` clause without an `SLIMIT` clause can cause [inconsistent
 query results](https://github.com/influxdata/influxdb/issues/7578).
 There is an [ongoing issue](https://github.com/influxdata/influxdb/issues/7571) that requires queries with `SLIMIT` to include `GROUP BY *`.
@@ -181,15 +181,15 @@ tags: location=santa_monica
 
 This example is pretty involved, so here's the clause-by-clause breakdown:
 
-  - The [`SELECT` clause](/influxdb/v2.4/query-data/influxql/explore-data/select/) specifies an InfluxQL [function](/influxdb/v2.4/query-data/influxql/view-functions/).
-  - The [`FROM` clause](/influxdb/v2.4/query-data/influxql/explore-data/select/#from-clause) specifies a single measurement.
-  - The [`WHERE` clause](/influxdb/v2.4/query-data/influxql/explore-data/where/) specifies the time range for the query.
-  - The [`GROUP BY` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/) groups results by all tags  (`*`) and into 12-minute intervals.
-  - The [`ORDER BY time DESC` clause](/influxdb/v2.4/query-data/influxql/explore-data/order-by/#order-by-time-desc) returns results in descending timestamp order.
-  - The [`LIMIT 2` clause](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) limits the number of points returned to two.
-  - The [`OFFSET 2` clause](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) excludes the first two averages from the query results.
-  - The [`SLIMIT 1` clause](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) limits the number of series returned to one.
-  - The [`SOFFSET 1`](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) clause paginates the series returned.
+  - The [`SELECT` clause](/influxdb/v2.5/query-data/influxql/explore-data/select/) specifies an InfluxQL [function](/influxdb/v2.5/query-data/influxql/view-functions/).
+  - The [`FROM` clause](/influxdb/v2.5/query-data/influxql/explore-data/select/#from-clause) specifies a single measurement.
+  - The [`WHERE` clause](/influxdb/v2.5/query-data/influxql/explore-data/where/) specifies the time range for the query.
+  - The [`GROUP BY` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/) groups results by all tags  (`*`) and into 12-minute intervals.
+  - The [`ORDER BY time DESC` clause](/influxdb/v2.5/query-data/influxql/explore-data/order-by/#order-by-time-desc) returns results in descending timestamp order.
+  - The [`LIMIT 2` clause](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) limits the number of points returned to two.
+  - The [`OFFSET 2` clause](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) excludes the first two averages from the query results.
+  - The [`SLIMIT 1` clause](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) limits the number of series returned to one.
+  - The [`SOFFSET 1`](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) clause paginates the series returned.
 
 Without `SOFFSET 1`, the query would return the results for a different series:
 

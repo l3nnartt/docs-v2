@@ -3,7 +3,7 @@ title: InfluxQL transformation functions
 description: >
   Transform data with InfluxQL transformation functions.
 menu:
-  influxdb_2_4:
+  influxdb_2_5:
     name: Transformations
     parent: View InfluxQL functions
 weight: 205
@@ -11,7 +11,7 @@ weight: 205
 
 Transformation functions take a stream of tables as input, transform the data, and output a stream of tables.
 
-Each transformation function below covers **syntax**, including parameters to pass to the function, and **examples** of how to use the function. Examples use [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data) and data from [sample_test.txt](https://gist.github.com/sanderson/244e3dc2d778d5c37783483c6c2b548a).
+Each transformation function below covers **syntax**, including parameters to pass to the function, and **examples** of how to use the function. Examples use [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data) and data from [sample_test.txt](https://gist.github.com/sanderson/244e3dc2d778d5c37783483c6c2b548a).
 
 - [ABS()](#abs)
 - [ACOS()](#acos)
@@ -42,7 +42,7 @@ Each transformation function below covers **syntax**, including parameters to pa
 
 ## ABS()
 
-Returns the absolute value of the field value. Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Returns the absolute value of the field value. Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 
 ### Basic syntax
 
@@ -51,12 +51,12 @@ SELECT ABS( [ * | <field_key> ] ) FROM_clause [WHERE_clause] [GROUP_BY_clause] [
 ```
 
 `ABS(field_key)`  
-Returns the absolute values of field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the absolute values of field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 `ABS(*)`  
-Returns the absolute values of field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the absolute values of field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`ABS()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`ABS()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
 #### Examples
 
@@ -117,8 +117,8 @@ time                    abs
 2019-08-18T00:18:00Z    8.2250000000
 ```
 
-Returns the absolute values of field values associated with the `water_level` field key in the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+Returns the absolute values of field values associated with the `water_level` field key in the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -130,7 +130,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT ABS(<function>( [ * | <field_key> ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `ABS()` function to those results.
 
 `ABS()` supports the following nested functions:
@@ -186,7 +186,7 @@ InfluxDB then calculates absolute values of those averages.
 
 ## ACOS()
 
-Returns the arccosine (in radians) of the field value. Field values must be between -1 and 1. Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but does not support [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Returns the arccosine (in radians) of the field value. Field values must be between -1 and 1. Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but does not support [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 
 ### Basic syntax
 
@@ -195,12 +195,12 @@ SELECT ACOS( [ * | <field_key> ] ) FROM_clause [WHERE_clause] [GROUP_BY_clause] 
 ```
 
 `ACOS(field_key)`  
-Returns the arccosine of field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the arccosine of field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 `ACOS(*)`  
-Returns the arccosine of field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the arccosine of field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`ACOS()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types) with values between -1 and 1.
+`ACOS()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types) with values between -1 and 1.
 
 #### Examples
 
@@ -288,8 +288,8 @@ time                  acos
 2018-06-24T23:55:00Z   1.647695085
 ```
 
-Returns arccosine of field values associated with the `a` field key in the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2018-06-24T00:00:00Z` and `2018-06-25T00:00:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+Returns arccosine of field values associated with the `a` field key in the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2018-06-24T00:00:00Z` and `2018-06-25T00:00:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -301,7 +301,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT ACOS(<function>( [ * | <field_key> ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `ACOS()` function to those results.
 
 `ACOS()` supports the following nested functions:
@@ -378,14 +378,14 @@ SELECT ASIN( [ * | <field_key> ] ) FROM_clause [WHERE_clause] [GROUP_BY_clause] 
 ```
 
 `ASIN(field_key)`  
-Returns the arcsine of field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the arcsine of field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 `ASIN(*)`  
-Returns the arcsine of field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the arcsine of field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`ASIN()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types) with values between -1 and 1.
+`ASIN()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types) with values between -1 and 1.
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `ASIN()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
@@ -477,8 +477,8 @@ time                     asin
 2018-06-24T23:55:00Z     0.0768987583
 ```
 
-Returns arcsine of field values associated with the `a` field key in the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2018-06-24T00:00:00Z` and `2018-06-25T00:00:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+Returns arcsine of field values associated with the `a` field key in the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2018-06-24T00:00:00Z` and `2018-06-25T00:00:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -490,7 +490,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT ASIN(<function>( [ * | <field_key> ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `ASIN()` function to those results.
 
 `ASIN()` supports the following nested functions:
@@ -560,7 +560,7 @@ InfluxDB then calculates arcsine of those averages.
 
 Returns the arctangent (in radians) of the field value. Field values must be between -1 and 1.
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `ATAN()` with a `GROUP BY time()` clause, see the [Advanced syntax](#advanced-syntax).
 
 ### Basic syntax
@@ -570,15 +570,15 @@ SELECT ATAN( [ * | <field_key> ] ) FROM_clause [WHERE_clause] [GROUP_BY_clause] 
 ```
 
 `ATAN(field_key)`  
-Returns the arctangent of field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the arctangent of field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 <!-- `ATAN(/regular_expression/)`  
-Returns the arctangent of field values associated with each field key that matches the [regular expression](/influxdb/v2.4/query-data/influxql/explore-data/regular-expressions/). -->
+Returns the arctangent of field values associated with each field key that matches the [regular expression](/influxdb/v2.5/query-data/influxql/explore-data/regular-expressions/). -->
 
 `ATAN(*)`  
-Returns the arctangent of field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the arctangent of field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`ATAN()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types) with values between -1 and 1.
+`ATAN()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types) with values between -1 and 1.
 
 #### Examples
 
@@ -661,8 +661,8 @@ time                     atan
 2018-06-24T23:55:00Z     -0.0766723939
 ```
 
-Returns arctangent of field values associated with the `a` field key in [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2017-05-01T00:00:00Z` and `2017-05-09T00:00:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+Returns arctangent of field values associated with the `a` field key in [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2017-05-01T00:00:00Z` and `2017-05-09T00:00:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -674,7 +674,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT ATAN(<function>( [ * | <field_key> ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `ATAN()` function to those results.
 
 `ATAN()` supports the following nested functions:
@@ -751,15 +751,15 @@ SELECT ATAN2( [ * | <field_key> | num ], [ <field_key> | num ] ) FROM_clause [WH
 ```
 
 `ATAN2(field_key_y, field_key_x)`  
-Returns the arctangent of field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key), `field_key_y`, divided by field values associated with `field_key_x`.
+Returns the arctangent of field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key), `field_key_y`, divided by field values associated with `field_key_x`.
 
 `ATAN2(*, field_key_x)`  
-Returns the field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement)
+Returns the field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement)
 divided by field values associated with `field_key_x`.
 
-`ATAN2()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`ATAN2()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `ATAN2()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
@@ -837,8 +837,8 @@ time                     atan2
 2018-06-24T23:55:00Z     -0.0768444917
 ```
 
-Returns the arctangent of field values associated with the `a` field key divided by the `b` field key in the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2018-05-16T12:10:00Z` and `2018-05-16T12:10:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+Returns the arctangent of field values associated with the `a` field key divided by the `b` field key in the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2018-05-16T12:10:00Z` and `2018-05-16T12:10:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -850,7 +850,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT ATAN2(<function()>, <function()>) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `ATAN2()` function to those results.
 
 `ATAN2()` supports the following nested functions:
@@ -922,19 +922,19 @@ SELECT CEIL( [ * | <field_key> ] ) FROM_clause [WHERE_clause] [GROUP_BY_clause] 
 ```
 
 `CEIL(field_key)`  
-Returns the field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key) rounded up to the nearest integer.
+Returns the field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key) rounded up to the nearest integer.
 
 `CEIL(*)`  
-Returns the field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement) rounded up to the nearest integer.
+Returns the field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement) rounded up to the nearest integer.
 
-`CEIL()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`CEIL()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `CEIL()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE "location" = 'santa_monica' AND time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z' 
@@ -1009,8 +1009,8 @@ time                  ceil
 ```
 
 Returns field values associated with the `water_level` field key rounded up to the nearest integer.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -1022,7 +1022,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT CEIL(<function>( [ * | <field_key> | /<regular_expression>/ ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `CEIL()` function to those results.
 
 `CEIL()` supports the following nested functions:
@@ -1087,19 +1087,19 @@ SELECT COS( [ * | <field_key> ] ) FROM_clause [WHERE_clause] [GROUP_BY_clause] [
 ```
 
 `COS(field_key)`  
-Returns the cosine of field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the cosine of field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 `COS(*)`  
-Returns the cosine of field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the cosine of field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`COS()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`COS()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `COS()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 ^
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z' AND "location" = 'santa_monica'
@@ -1173,8 +1173,8 @@ time                     cos
 ```
 
 Returns cosine of field values associated with the `water_level` field key.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -1186,7 +1186,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT COS(<function>( [ * | <field_key> ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `COS()` function to those results.
 
 `COS()` supports the following nested functions:
@@ -1242,7 +1242,7 @@ InfluxDB then calculates cosine of those averages.
 
 ## CUMULATIVE_SUM()
 
-Returns the running total of subsequent [field values](/influxdb/v2.4/reference/glossary/#field-value).
+Returns the running total of subsequent [field values](/influxdb/v2.5/reference/glossary/#field-value).
 
 ### Basic syntax
 
@@ -1251,22 +1251,22 @@ SELECT CUMULATIVE_SUM( [ * | <field_key> | /<regular_expression>/ ] ) FROM_claus
 ```
 
 `CUMULATIVE_SUM(field_key)`  
-Returns the running total of subsequent field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the running total of subsequent field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 `CUMULATIVE_SUM(/regular_expression/)`  
-Returns the running total of subsequent field values associated with each field key that matches the [regular expression](/influxdb/v2.4/query-data/influxql/explore-data/regular-expressions/).
+Returns the running total of subsequent field values associated with each field key that matches the [regular expression](/influxdb/v2.5/query-data/influxql/explore-data/regular-expressions/).
 
 `CUMULATIVE_SUM(*)`  
-Returns the running total of subsequent field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the running total of subsequent field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`CUMULATIVE_SUM()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`CUMULATIVE_SUM()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `CUMULATIVE_SUM()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z' AND "location" = 'santa_monica'
@@ -1360,8 +1360,8 @@ time                    cumulative_sum
 ```
 
 Returns the running total of the field values associated with the `water_level` field key.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -1373,7 +1373,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT CUMULATIVE_SUM(<function>( [ * | <field_key> | /<regular_expression>/ ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `CUMULATIVE_SUM()` function to those results.
 
 `CUMULATIVE_SUM()` supports the following nested functions:
@@ -1431,7 +1431,7 @@ and the third point (`6.213`) is the sum of `2.09`, `2.077`, and `2.046000000000
 
 ## DERIVATIVE()
 
-Returns the rate of change between subsequent [field values](/influxdb/v2.4/reference/glossary/#field-value).
+Returns the rate of change between subsequent [field values](/influxdb/v2.5/reference/glossary/#field-value).
 
 ### Basic syntax
 
@@ -1440,26 +1440,26 @@ SELECT DERIVATIVE( [ * | <field_key> | /<regular_expression>/ ] [ , <unit> ] ) F
 ```
 
 InfluxDB calculates the difference between subsequent field values and converts those results into the rate of change per `unit`.
-The `unit` argument is an integer followed by a [duration](/influxdb/v2.4/reference/glossary/#duration) and it is optional.
+The `unit` argument is an integer followed by a [duration](/influxdb/v2.5/reference/glossary/#duration) and it is optional.
 If the query does not specify the `unit` the unit defaults to one second (`1s`).
 
 `DERIVATIVE(field_key)`  
-Returns the rate of change between subsequent field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the rate of change between subsequent field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 `DERIVATIVE(/regular_expression/)`  
-Returns the rate of change between subsequent field values associated with each field key that matches the [regular expression](/influxdb/v2.4/query-data/influxql/explore-data/regular-expressions/).
+Returns the rate of change between subsequent field values associated with each field key that matches the [regular expression](/influxdb/v2.5/query-data/influxql/explore-data/regular-expressions/).
 
 `DERIVATIVE(*)`  
-Returns the rate of change between subsequent field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the rate of change between subsequent field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`DERIVATIVE()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`DERIVATIVE()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `DERIVATIVE()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples in this section use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples in this section use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE "location" = 'santa_monica' AND time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z'
@@ -1605,9 +1605,9 @@ time                   derivative
 2019-08-18T00:12:00Z   0.0000388889
 ```
 
-Returns the one-second rate of change between `water_level` field values in the `h2o_feet` measurement in [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
+Returns the one-second rate of change between `water_level` field values in the `h2o_feet` measurement in [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
 
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to one and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to one and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 The only result (`0.0000388889`) is the one-second rate of change between the relevant subsequent field values in the raw data. InfluxDB calculates the difference between the field values (subtracts the first field value from the second field value) and then normalizes that value to the one-second rate of change (dividing the difference between the field values' timestamps in seconds (`360`) by the specified rate of change (`1s`)):
 
@@ -1626,10 +1626,10 @@ The only result (`0.0000388889`) is the one-second rate of change between the re
 SELECT DERIVATIVE(<function> ([ * | <field_key> | /<regular_expression>/ ]) [ , <unit> ] ) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time()` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time()` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `DERIVATIVE()` function to those results.
 
-The `unit` argument is an integer followed by a [duration](//influxdb/v2.4/reference/glossary/#duration) and it is optional.
+The `unit` argument is an integer followed by a [duration](//influxdb/v2.5/reference/glossary/#duration) and it is optional.
 If the query does not specify the `unit` the `unit` defaults to the `GROUP BY time()` interval.
 Note that this behavior is different from the [basic syntax's](#basic-syntax-1) default behavior.
 
@@ -1733,7 +1733,7 @@ InfluxDB calculates the difference between the first and second average, and the
 
 ## DIFFERENCE()
 
-Returns the result of subtraction between subsequent [field values](/influxdb/v2.4/reference/glossary/#field-value).
+Returns the result of subtraction between subsequent [field values](/influxdb/v2.5/reference/glossary/#field-value).
 
 ### Syntax
 
@@ -1742,22 +1742,22 @@ SELECT DIFFERENCE( [ * | <field_key> | /<regular_expression>/ ] ) FROM_clause [W
 ```
 
 `DIFFERENCE(field_key)`  
-Returns the difference between subsequent field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the difference between subsequent field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 `DIFFERENCE(/regular_expression/)`  
-Returns the difference between subsequent field values associated with each field key that matches the [regular expression](/influxdb/v2.4/query-data/influxql/explore-data/regular-expressions/).
+Returns the difference between subsequent field values associated with each field key that matches the [regular expression](/influxdb/v2.5/query-data/influxql/explore-data/regular-expressions/).
 
 `DIFFERENCE(*)`  
-Returns the difference between subsequent field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the difference between subsequent field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`DIFFERENCE()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`DIFFERENCE()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `DIFFERENCE()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z' AND "location" = 'santa_monica'
@@ -1846,8 +1846,8 @@ time                     difference
 ```
 
 Returns the difference between the subsequent field values in the `water_level` field key.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-They query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to two and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+They query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to two and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -1859,7 +1859,7 @@ They query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-a
 SELECT DIFFERENCE(<function>( [ * | <field_key> | /<regular_expression>/ ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `DIFFERENCE()` function to those results.
 
 `DIFFERENCE()` supports the following nested functions:
@@ -1916,7 +1916,7 @@ The first point in the final results (-0.229`) is the difference between `2.343`
 
 ## ELAPSED()
 
-Returns the difference between subsequent [field value's](/influxdb/v2.4/reference/glossary/#field-value) timestamps.
+Returns the difference between subsequent [field value's](/influxdb/v2.5/reference/glossary/#field-value) timestamps.
 
 ### Syntax
 
@@ -1925,23 +1925,23 @@ SELECT ELAPSED( [ * | <field_key> | /<regular_expression>/ ] [ , <unit> ] ) FROM
 ```
 
 InfluxDB calculates the difference between subsequent timestamps.
-The `unit` option is an integer followed by a [duration](/influxdb/v2.4/reference/glossary/#duration) and it determines the unit of the returned difference.
+The `unit` option is an integer followed by a [duration](/influxdb/v2.5/reference/glossary/#duration) and it determines the unit of the returned difference.
 If the query does not specify the `unit` option the query returns the difference between timestamps in nanoseconds.
 
 `ELAPSED(field_key)`  
-Returns the difference between subsequent timestamps associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the difference between subsequent timestamps associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 `ELAPSED(/regular_expression/)`  
-Returns the difference between subsequent timestamps associated with each field key that matches the [regular expression](/influxdb/v2.4/query-data/influxql/explore-data/regular-expressions/).
+Returns the difference between subsequent timestamps associated with each field key that matches the [regular expression](/influxdb/v2.5/query-data/influxql/explore-data/regular-expressions/).
 
 `ELAPSED(*)`  
-Returns the difference between subsequent timestamps associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the difference between subsequent timestamps associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`ELAPSED()` supports all field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`ELAPSED()` supports all field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
 #### Examples
 
-The examples use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE "location" = 'santa_monica' AND time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:12:00Z'
@@ -2040,10 +2040,10 @@ time                   elapsed
 ```
 
 Returns the difference (in milliseconds) between subsequent timestamps in the `water_level` field key and in the `h2o_feet` measurement.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2015-08-18T00:00:00Z` and `2015-08-18T00:12:00Z` and sorts timestamps in [descending order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to one and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by one point.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2015-08-18T00:00:00Z` and `2015-08-18T00:12:00Z` and sorts timestamps in [descending order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to one and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by one point.
 
-Notice that the result is negative; the [`ORDER BY time DESC` clause](/influxdb/v2.4/query-data/influxql/explore-data/order-by/) sorts timestamps in descending order so `ELAPSED()` calculates the difference between timestamps in reverse order.
+Notice that the result is negative; the [`ORDER BY time DESC` clause](/influxdb/v2.5/query-data/influxql/explore-data/order-by/) sorts timestamps in descending order so `ELAPSED()` calculates the difference between timestamps in reverse order.
 
 {{% /expand %}}
 
@@ -2072,7 +2072,7 @@ time                   elapsed
 
 #### ELAPSED() with GROUP BY time() clauses
 
-The `ELAPSED()` function supports the [`GROUP BY time()` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) but the query results aren't particularly useful.
+The `ELAPSED()` function supports the [`GROUP BY time()` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) but the query results aren't particularly useful.
 Currently, an `ELAPSED()` query with a nested function and a `GROUP BY time()` clause simply returns the interval specified in the `GROUP BY time()` clause.
 
 The `GROUP BY time()` clause determines the timestamps in the results; each timestamp marks the start of a time interval.
@@ -2120,22 +2120,22 @@ SELECT EXP( [ * | <field_key> ] ) FROM_clause [WHERE_clause] [GROUP_BY_clause] [
 ```
 
 `EXP(field_key)`  
-Returns the exponential of field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the exponential of field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 <!-- `EXP(/regular_expression/)`  
-Returns the exponential of field values associated with each field key that matches the [regular expression](/influxdb/v2.4/query-data/influxql/explore-data/regular-expressions/). -->
+Returns the exponential of field values associated with each field key that matches the [regular expression](/influxdb/v2.5/query-data/influxql/explore-data/regular-expressions/). -->
 
 `EXP(*)`  
-Returns the exponential of field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the exponential of field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`EXP()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`EXP()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `EXP()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z' AND "location" = 'santa_monica'
@@ -2209,8 +2209,8 @@ time                       exp
 ```
 
 Returns the exponentials of field values associated with the `water_level` field key.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -2222,7 +2222,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT EXP(<function>( [ * | <field_key> ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `EXP()` function to those results.
 
 `EXP()` supports the following nested functions:
@@ -2287,19 +2287,19 @@ SELECT FLOOR( [ * | <field_key> ] ) FROM_clause [WHERE_clause] [GROUP_BY_clause]
 ```
 
 `FLOOR(field_key)`  
-Returns the field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key) rounded down to the nearest integer.
+Returns the field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key) rounded down to the nearest integer.
 
 `FLOOR(*)`  
-Returns the field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement) rounded down to the nearest integer.
+Returns the field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement) rounded down to the nearest integer.
 
-`FLOOR()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`FLOOR()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `FLOOR()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z' AND "location" = 'santa_monica'
@@ -2373,8 +2373,8 @@ time                     floor
 ```
 
 Returns field values associated with the `water_level` field key rounded down to the nearest integer.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -2386,7 +2386,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT FLOOR(<function>( [ * | <field_key> ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `FLOOR()` function to those results.
 
 `FLOOR()` supports the following nested functions:
@@ -2457,19 +2457,19 @@ SELECT LN( [ * | <field_key> ] ) FROM_clause [WHERE_clause] [GROUP_BY_clause] [O
 ```
 
 `LN(field_key)`  
-Returns the natural logarithm of field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the natural logarithm of field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 `LN(*)`  
-Returns the natural logarithm of field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the natural logarithm of field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`LN()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`LN()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `LN()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z' AND "location" = 'santa_monica'
@@ -2543,8 +2543,8 @@ time                        ln
 ```
 
 Returns the natural logarithms of field values associated with the `water_level` field key.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -2556,7 +2556,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT LN(<function>( [ * | <field_key> ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `LN()` function to those results.
 
 `LN()` supports the following nested functions:
@@ -2621,19 +2621,19 @@ SELECT LOG( [ * | <field_key> ], <b> ) FROM_clause [WHERE_clause] [GROUP_BY_clau
 ```
 
 `LOG(field_key, b)`  
-Returns the logarithm of field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key) with base `b`.
+Returns the logarithm of field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key) with base `b`.
 
 `LOG(*, b)`  
-Returns the logarithm of field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement) with base `b`.
+Returns the logarithm of field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement) with base `b`.
 
-`LOG()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`LOG()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `LOG()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z' AND "location" = 'santa_monica'
@@ -2707,8 +2707,8 @@ time                       log
 ``
 
 Returns the logarithm base 4 of field values associated with the `water_level` field key.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -2720,7 +2720,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT LOG(<function>( [ * | <field_key> ] ), <b>) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `LOG()` function to those results.
 
 `LOG()` supports the following nested functions:
@@ -2785,19 +2785,19 @@ SELECT LOG2( [ * | <field_key> ] ) FROM_clause [WHERE_clause] [GROUP_BY_clause] 
 ```
 
 `LOG2(field_key)`  
-Returns the logarithm of field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key) to the base 2.
+Returns the logarithm of field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key) to the base 2.
 
 `LOG2(*)`  
-Returns the logarithm of field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement) to the base 2.
+Returns the logarithm of field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement) to the base 2.
 
-`LOG2()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`LOG2()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `LOG2()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z' AND "location" = 'santa_monica'
@@ -2871,8 +2871,8 @@ time                       log2
 ```
 
 Returns the logarithm base 2 of field values associated with the `water_level` field key.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -2884,7 +2884,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT LOG2(<function>( [ * | <field_key> ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `LOG2()` function to those results.
 
 `LOG2()` supports the following nested functions:
@@ -2949,19 +2949,19 @@ SELECT LOG10( [ * | <field_key> ] ) FROM_clause [WHERE_clause] [GROUP_BY_clause]
 ```
 
 `LOG10(field_key)`  
-Returns the logarithm of field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key) to the base 10.
+Returns the logarithm of field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key) to the base 10.
 
 `LOG10(*)`  
-Returns the logarithm of field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement) to the base 10.
+Returns the logarithm of field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement) to the base 10.
 
-`LOG10()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`LOG10()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `LOG10()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z' AND "location" = 'santa_monica'
@@ -3035,8 +3035,8 @@ time                       log10
 ```
 
 Returns the logarithm base 10 of field values associated with the `water_level` field key.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -3048,7 +3048,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT LOG10(<function>( [ * | <field_key> ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `LOG10()` function to those results.
 
 `LOG10()` supports the following nested functions:
@@ -3104,7 +3104,7 @@ InfluxDB then calculates the logarithm base 10 of those averages.
 
 ## MOVING_AVERAGE()
 
-Returns the rolling average across a window of subsequent [field values](/influxdb/v2.4/reference/glossary/#field-value).
+Returns the rolling average across a window of subsequent [field values](/influxdb/v2.5/reference/glossary/#field-value).
 
 ### Basic syntax
 
@@ -3116,22 +3116,22 @@ SELECT MOVING_AVERAGE( [ * | <field_key> | /<regular_expression>/ ] , <N> ) FROM
 The `N` argument is an integer and it is required.
 
 `MOVING_AVERAGE(field_key,N)`  
-Returns the rolling average across `N` field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the rolling average across `N` field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 `MOVING_AVERAGE(/regular_expression/,N)`  
-Returns the rolling average across `N` field values associated with each field key that matches the [regular expression](/influxdb/v2.4/query-data/influxql/explore-data/regular-expressions/).
+Returns the rolling average across `N` field values associated with each field key that matches the [regular expression](/influxdb/v2.5/query-data/influxql/explore-data/regular-expressions/).
 
 `MOVING_AVERAGE(*,N)`  
-Returns the rolling average across `N` field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the rolling average across `N` field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`MOVING_AVERAGE()` int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`MOVING_AVERAGE()` int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `MOVING_AVERAGE()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE "location" = 'santa_monica' AND time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z'
@@ -3222,8 +3222,8 @@ time                      moving_average
 ```
 
 Returns the rolling average across a two-field-value window for the `water_level` field key in the `h2o_feet` measurement.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to two and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by three points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to two and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by three points.
 
 {{% /expand %}}
 
@@ -3235,7 +3235,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT MOVING_AVERAGE(<function> ([ * | <field_key> | /<regular_expression>/ ]) , N ) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `MOVING_AVERAGE()` function to those results.
 
 `MOVING_AVERAGE()` supports the following nested functions:
@@ -3293,7 +3293,7 @@ The first final result (`2.4935000000`) is the average of the first two maximum 
 
 ## NON_NEGATIVE_DERIVATIVE()
 
-Returns the non-negative rate of change between subsequent [field values](/influxdb/v2.4/reference/glossary/#field-value).
+Returns the non-negative rate of change between subsequent [field values](/influxdb/v2.5/reference/glossary/#field-value).
 Non-negative rates of change include positive rates of change and rates of change that equal zero.
 
 ### Basic syntax
@@ -3303,22 +3303,22 @@ SELECT NON_NEGATIVE_DERIVATIVE( [ * | <field_key> | /<regular_expression>/ ] [ ,
 ```
 
 InfluxDB calculates the difference between subsequent field values and converts those results into the rate of change per `unit`.
-The `unit` argument is an integer followed by a [duration](/influxdb/v2.4/reference/glossary/#duration) and it is optional.
+The `unit` argument is an integer followed by a [duration](/influxdb/v2.5/reference/glossary/#duration) and it is optional.
 If the query does not specify the `unit`, the unit defaults to one second (`1s`).
 `NON_NEGATIVE_DERIVATIVE()` returns only positive rates of change or rates of change that equal zero.
 
 `NON_NEGATIVE_DERIVATIVE(field_key)`  
-Returns the non-negative rate of change between subsequent field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the non-negative rate of change between subsequent field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 `NON_NEGATIVE_DERIVATIVE(/regular_expression/)`  
-Returns the non-negative rate of change between subsequent field values associated with each field key that matches the [regular expression](/influxdb/v2.4/query-data/influxql/explore-data/regular-expressions/).
+Returns the non-negative rate of change between subsequent field values associated with each field key that matches the [regular expression](/influxdb/v2.5/query-data/influxql/explore-data/regular-expressions/).
 
 `NON_NEGATIVE_DERIVATIVE(*)`  
-Returns the non-negative rate of change between subsequent field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the non-negative rate of change between subsequent field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`NON_NEGATIVE_DERIVATIVE()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`NON_NEGATIVE_DERIVATIVE()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `NON_NEGATIVE_DERIVATIVE()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
@@ -3332,10 +3332,10 @@ See the examples in the [`DERIVATIVE()` documentation](#basic-syntax-8).
 SELECT NON_NEGATIVE_DERIVATIVE(<function> ([ * | <field_key> | /<regular_expression>/ ]) [ , <unit> ] ) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `NON_NEGATIVE_DERIVATIVE()` function to those results.
 
-The `unit` argument is an integer followed by a [duration](/influxdb/v2.4/reference/glossary/#duration) and it is optional.
+The `unit` argument is an integer followed by a [duration](/influxdb/v2.5/reference/glossary/#duration) and it is optional.
 If the query does not specify the `unit`, the `unit` defaults to the `GROUP BY time()` interval.
 Note that this behavior is different from the [basic syntax's](#basic-syntax-4) default behavior.
 `NON_NEGATIVE_DERIVATIVE()` returns only positive rates of change or rates of change that equal zero.
@@ -3359,7 +3359,7 @@ See the examples in the [`DERIVATIVE()` documentation](#advanced-syntax-8).
 
 ## NON_NEGATIVE_DIFFERENCE()
 
-Returns the non-negative result of subtraction between subsequent [field values](/influxdb/v2.4/reference/glossary/#field-value).
+Returns the non-negative result of subtraction between subsequent [field values](/influxdb/v2.5/reference/glossary/#field-value).
 Non-negative results of subtraction include positive differences and differences that equal zero.
 
 ### Basic syntax
@@ -3369,17 +3369,17 @@ SELECT NON_NEGATIVE_DIFFERENCE( [ * | <field_key> | /<regular_expression>/ ] ) F
 ```
 
 `NON_NEGATIVE_DIFFERENCE(field_key)`  
-Returns the non-negative difference between subsequent field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the non-negative difference between subsequent field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 `NON_NEGATIVE_DIFFERENCE(/regular_expression/)`  
-Returns the non-negative difference between subsequent field values associated with each field key that matches the [regular expression](/influxdb/v2.4/query-data/influxql/explore-data/regular-expressions/).
+Returns the non-negative difference between subsequent field values associated with each field key that matches the [regular expression](/influxdb/v2.5/query-data/influxql/explore-data/regular-expressions/).
 
 `NON_NEGATIVE_DIFFERENCE(*)`  
-Returns the non-negative difference between subsequent field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the non-negative difference between subsequent field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`NON_NEGATIVE_DIFFERENCE()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`NON_NEGATIVE_DIFFERENCE()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `NON_NEGATIVE_DIFFERENCE()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
@@ -3393,7 +3393,7 @@ See the examples in the [`DIFFERENCE()` documentation](#basic-syntax-9).
 SELECT NON_NEGATIVE_DIFFERENCE(<function>( [ * | <field_key> | /<regular_expression>/ ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `NON_NEGATIVE_DIFFERENCE()` function to those results.
 
 `NON_NEGATIVE_DIFFERENCE()` supports the following nested functions:
@@ -3424,19 +3424,19 @@ SELECT POW( [ * | <field_key> ], <x> ) FROM_clause [WHERE_clause] [GROUP_BY_clau
 ```
 
 `POW(field_key, x)`  
-Returns the field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key) to the power of `x`.
+Returns the field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key) to the power of `x`.
 
 `POW(*, x)`  
-Returns the field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement) to the power of `x`.
+Returns the field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement) to the power of `x`.
 
-`POW()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`POW()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `POW()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z' AND "location" = 'santa_monica'
@@ -3510,8 +3510,8 @@ time                      pow
 ```
 
 Returns field values associated with the `water_level` field key multiplied to the power of 4.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -3523,7 +3523,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT POW(<function>( [ * | <field_key> ] ), <x>) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `POW()` function to those results.
 
 `POW()` supports the following nested functions:
@@ -3588,18 +3588,18 @@ SELECT ROUND( [ * | <field_key> ] ) FROM_clause [WHERE_clause] [GROUP_BY_clause]
 ```
 
 `ROUND(field_key)`  
-Returns the field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key) rounded to the nearest integer.
+Returns the field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key) rounded to the nearest integer.
 
 `ROUND(*)`  
-Returns the field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement) rounded to the nearest integer.
+Returns the field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement) rounded to the nearest integer.
 
-`ROUND()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`ROUND()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/. To use `ROUND()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/. To use `ROUND()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z' AND "location" = 'santa_monica'
@@ -3673,8 +3673,8 @@ time                        round
 ```
 
 Returns field values associated with the `water_level` field key rounded to the nearest integer.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -3686,7 +3686,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT ROUND(<function>( [ * | <field_key> ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `ROUND()` function to those results.
 
 `ROUND()` supports the following nested functions:
@@ -3751,19 +3751,19 @@ SELECT SIN( [ * | <field_key> ] ) FROM_clause [WHERE_clause] [GROUP_BY_clause] [
 ```
 
 `SIN(field_key)`  
-Returns the sine of field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the sine of field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 `SIN(*)`  
-Returns the sine of field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the sine of field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`SIN()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`SIN()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `SIN()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z' AND "location" = 'santa_monica'
@@ -3837,8 +3837,8 @@ time                        sin
 ```
 
 Returns sine of field values associated with the `water_level` field key.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -3850,7 +3850,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT SIN(<function>( [ * | <field_key> ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `SIN()` function to those results.
 
 `SIN()` supports the following nested functions:
@@ -3915,19 +3915,19 @@ SELECT SQRT( [ * | <field_key> ] ) FROM_clause [WHERE_clause] [GROUP_BY_clause] 
 ```
 
 `SQRT(field_key)`  
-Returns the square root of field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the square root of field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 `SQRT(*)`  
-Returns the square root field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the square root field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`SQRT()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`SQRT()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `SQRT()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z' AND "location" = 'santa_monica'
@@ -3999,8 +3999,8 @@ time                       sqrt
 ```
 
 Returns the square roots of field values associated with the `water_level` field key.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -4012,7 +4012,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT SQRT(<function>( [ * | <field_key> ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `SQRT()` function to those results.
 
 `SQRT()` supports the following nested functions:
@@ -4077,19 +4077,19 @@ SELECT TAN( [ * | <field_key> ] ) FROM_clause [WHERE_clause] [GROUP_BY_clause] [
 ```
 
 `TAN(field_key)`  
-Returns the tangent of field values associated with the [field key](/influxdb/v2.4/reference/glossary/#field-key).
+Returns the tangent of field values associated with the [field key](/influxdb/v2.5/reference/glossary/#field-key).
 
 `TAN(*)`  
-Returns the tangent of field values associated with each field key in the [measurement](/influxdb/v2.4/reference/glossary/#measurement).
+Returns the tangent of field values associated with each field key in the [measurement](/influxdb/v2.5/reference/glossary/#measurement).
 
-`TAN()` supports int64 and float64 field value [data types](/influxdb/v2.4/query-data/influxql/explore-data/select/#data-types).
+`TAN()` supports int64 and float64 field value [data types](/influxdb/v2.5/query-data/influxql/explore-data/select/#data-types).
 
-Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
+Supports `GROUP BY` clauses that [group by tags](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-tags) but not `GROUP BY` clauses that [group by time](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals).
 To use `TAN()` with a `GROUP BY time()` clause, see [Advanced syntax](#advanced-syntax).
 
 #### Examples
 
-The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.4/reference/sample-data/#noaa-water-sample-data):
+The examples below use the following subsample of the [NOAA water sample data](/influxdb/v2.5/reference/sample-data/#noaa-water-sample-data):
 
 ```sql
 > SELECT "water_level" FROM "h2o_feet" WHERE time >= '2019-08-18T00:00:00Z' AND time <= '2019-08-18T00:30:00Z' AND "location" = 'santa_monica'
@@ -4163,8 +4163,8 @@ time                      tan
 ```
 
 Returns tangent of field values associated with the `water_level` field key.
-It covers the [time range](/influxdb/v2.4/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.4/query-data/influxql/explore-data/order-by/).
-The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.4/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
+It covers the [time range](/influxdb/v2.5/query-data/influxql/explore-data/time-and-timezone/#time-syntax) between `2019-08-18T00:00:00Z` and `2019-08-18T00:30:00Z` and returns results in [descending timestamp order](/influxdb/v2.5/query-data/influxql/explore-data/order-by/).
+The query also [limits](/influxdb/v2.5/query-data/influxql/explore-data/limit-and-slimit/) the number of points returned to four and [offsets](/influxdb/v2.5/query-data/influxql/explore-data/offset-and-soffset/) results by two points.
 
 {{% /expand %}}
 
@@ -4176,7 +4176,7 @@ The query also [limits](/influxdb/v2.4/query-data/influxql/explore-data/limit-an
 SELECT TAN(<function>( [ * | <field_key> ] )) FROM_clause [WHERE_clause] GROUP_BY_clause [ORDER_BY_clause] [LIMIT_clause] [OFFSET_clause] [SLIMIT_clause] [SOFFSET_clause]
 ```
 
-The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.4/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
+The advanced syntax requires a [`GROUP BY time() ` clause](/influxdb/v2.5/query-data/influxql/explore-data/group-by/#group-by-time-intervals) and a nested InfluxQL function.
 The query first calculates the results for the nested function at the specified `GROUP BY time()` interval and then applies the `TAN()` function to those results.
 
 `TAN()` supports the following nested functions:
