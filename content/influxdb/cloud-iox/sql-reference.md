@@ -9,7 +9,7 @@ menu:
 weight: 190
 ---
 
-InfluxDB Cloud backed by InfluxDB IOx uses the Apache Arrow DataFusion implementation of SQL.  
+InfluxDB Cloud backed by InfluxDB IOx uses the [Apache Arrow DataFusion](https://arrow.apache.org/datafusion/) implementation of SQL.  
 
 - [Identifiers](#identifiers)  
 - [Quoting and case sensitivity](#quoting-and-case-sensitivity)    
@@ -158,6 +158,7 @@ The following reserved key words cannot be used as identifiers.
 ```sql
 AND 
 ALL  
+ANALYZE  
 AS  
 ASC  
 BETWEEN
@@ -167,7 +168,6 @@ DESC
 DISTINCT                                       
 EXISTS                                                      
 EXPLAIN  
-EXPLAIN ANALYZE   
 FROM                     
 GROUP BY                                          
 HAVING                                          
@@ -537,22 +537,16 @@ WHERE time >= timestamp '2019-09-10T00:00:00Z' AND time <= timestamp '2019-09-19
 
 ### Time series functions
 
-| Function              | Description                                                                                     |
-<!-- | :-------------------- | :---------------------------------------------------------------------------------------------- |
-| TIME_BUCKET_GAPFILL() | Returns a contiguous set of time bucketed data.                                                 | -->
-| DATEBIN()             | Bins the input timestamp into a specified interval.                                             |
-| DATE_TRUNC()          | Truncates a timestamp expression based on the date part specified, such as hour, day, or month. |
-| DATE_PART()           | Returns the specified part of a date.                                                           |
-| NOW()                 | Returns the current time.                                                                       |
-|                       
+| Function     | Description                                                                                     |
+| :----------- | :---------------------------------------------------------------------------------------------- |
+| DATE_BIN()   | Bins the input timestamp into a specified interval.                                             |
+| DATE_TRUNC() | Truncates a timestamp expression based on the date part specified, such as hour, day, or month. |
+| DATE_PART()  | Returns the specified part of a date.                                                           |
+| NOW()        | Returns the current time.                                                                       |
                  
 #### Examples
 
-<!-- ```sql
-SELECT time_bucket_gapfill('1 day', time) as day,
-"degrees", "location", "time"
-FROM "h2o_temperature" -->
-
+```sql
 SELECT DATE_BIN(INTERVAL '1 hour', time, '2019-09-18T00:00:00Z'::timestamp),
 SUM(water_level)
 FROM "h2o_feet"
@@ -601,7 +595,7 @@ GROUP BY time
 | :------- | :--------------------------------------------------------------------------------------------------------- |
 | COALESCE | Returns the first argument that is not null. If all arguments are null, then `COALESCE` will return nulls. |
 | NULLIF   | Returns a null value if value1 equals value2, otherwise returns value1.                                    |
-                                                                                                           |
+
 
 ### Regular expression functions
 
