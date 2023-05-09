@@ -6,15 +6,13 @@ description: >
   output plugin to write to InfluxDB.
   Start Telegraf using the custom configuration.
 menu:
-  influxdb_cloud_serverless:
+  influxdb_cloud_dedicated:
     name: Manually
     parent: Configure Telegraf
 weight: 202
-influxdb/cloud-serverless/tags: [telegraf]
+influxdb/cloud-dedicated/tags: [telegraf]
 related:
   - /{{< latest "telegraf" >}}/plugins/
-  - /influxdb/cloud-serverless/use-telegraf/telegraf-configs/create/
-  - /influxdb/cloud-serverless/use-telegraf/telegraf-configs/update/
 alt_engine: /influxdb/cloud/write-data/no-code/use-telegraf/manual-config/
 ---
 
@@ -27,9 +25,25 @@ then start Telegraf using the custom configuration file.
 {{< youtube qFS2zANwIrc >}}
 
 {{% note %}}
-_View the [requirements](/influxdb/cloud-serverless/write-data/use-telegraf#requirements)
+_View the [requirements](/influxdb/cloud-dedicated/write-data/use-telegraf#requirements)
 for using Telegraf with InfluxDB {{< current-version >}}._
 {{% /note %}}
+
+<!-- TOC -->
+
+- [Configure Telegraf input and output plugins](#configure-telegraf-input-and-output-plugins)
+  - [Manually add Telegraf plugins](#manually-add-telegraf-plugins)
+  - [Enable and configure the InfluxDB v2 output plugin](#enable-and-configure-the-influxdb-v2-output-plugin)
+      - [urls](#urls)
+      - [token](#token)
+        - [Avoid storing tokens in telegraf.conf](#avoid-storing-tokens-in-telegrafconf)
+      - [organization](#organization)
+      - [bucket](#bucket)
+    - [Example influxdb_v2 configuration](#example-influxdb_v2-configuration)
+      - [Write to InfluxDB v1.x and v2.6](#write-to-influxdb-v1x-and-v26)
+- [Start Telegraf](#start-telegraf)
+
+<!-- /TOC -->
 
 ## Configure Telegraf input and output plugins
 
@@ -71,14 +85,16 @@ The InfluxDB output plugin configuration contains the following options:
 ##### urls
 
 An array of URLs for your InfluxDB {{< current-version >}} instances.
-See [InfluxDB Cloud Serverless regions](/influxdb/cloud-serverless/reference/regions/) for
-information about which URLs to use.
-**{{< cloud-name "short">}} requires HTTPS**.
+To write to InfluxDB Cloud Dedicated, include your InfluxDB Cloud Dedicated cluster URL using the HTTPS protocol:
+
+      ```toml
+      ["https://cluster-id.influxdb.io"]
+      ```
 
 ##### token
 
-Your InfluxDB {{< current-version >}} authorization token.
-For information about viewing tokens, see [View tokens](/influxdb/cloud-serverless/security/tokens/view-tokens/).
+Your InfluxDB Cloud Dedicated [database token](/influxdb/cloud-dedicated/admin/tokens/) with _write_ permission to the database.
+For information about viewing tokens, see [List tokens](/influxdb/cloud-dedicated/admin/tokens/list/).
 
 {{% note %}}
 ###### Avoid storing tokens in `telegraf.conf`
@@ -128,26 +144,22 @@ _See the [example `telegraf.conf` below](#example-influxdb_v2-configuration)._
 
 ##### organization
 
-The name of the organization that owns the target bucket.
+For InfluxDB Cloud Dedicated, set this to an empty string (`""`).
 
 ##### bucket
 
-The name of the bucket to write data to.
+The name of the InfluxDB Cloud Dedicated database to write data to.
 
 #### Example influxdb_v2 configuration
 
-The example below illustrates an `influxdb_v2` configuration.
+The following example shows a minimal [`outputs.influxdb_v2`](/{{< latest "telegraf" >}}/plugins/#output-influxdb_v2) configuration for writing data to InfluxDB Cloud Dedicated:
 
 ```toml
-# ...
-
 [[outputs.influxdb_v2]]
-  urls = ["https://cloud2.influxdata.com"]
-  token = "{$INFLUX_TOKEN}"
-  organization = "example-org"
-  bucket = "example-bucket"
-
-# ...
+  urls = ["https://cluster-id.influxdb.io"]
+  token = "DATABASE_TOKEN"
+  organization = ""
+  bucket = "DATABASE_NAME"
 ```
 
 {{% note %}}
@@ -156,16 +168,6 @@ The example below illustrates an `influxdb_v2` configuration.
 If a Telegraf agent is already writing to an InfluxDB v1.x database,
 enabling the InfluxDB v2 output plugin will write data to both v1.x and v2.6 instances.
 {{% /note %}}
-
-## Add a custom Telegraf configuration to InfluxDB
-
-To add a custom or manually configured Telegraf configuration to your collection
-of Telegraf configurations in InfluxDB, use the [`influx telegrafs create`](/influxdb/cloud-serverless/reference/cli/influx/telegrafs/create/)
-or [`influx telegrafs update`](/influxdb/cloud-serverless/reference/cli/influx/telegrafs/update/) commands.
-For more information, see:
-
-- [Create a Telegraf configuration](/influxdb/cloud-serverless/telegraf-configs/create/#use-the-influx-cli)
-- [Update a Telegraf configuration](/influxdb/cloud-serverless/telegraf-configs/update/#use-the-influx-cli)
 
 ## Start Telegraf
 
