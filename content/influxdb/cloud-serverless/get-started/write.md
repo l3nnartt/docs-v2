@@ -25,7 +25,7 @@ the following:
 - Influx user interface (UI)
 - [InfluxDB HTTP API](/influxdb/cloud-serverless/reference/api/)
 - [`influx` CLI](/influxdb/cloud-serverless/tools/influx-cli/)
-- [Telegraf](/{{< latest "telegraf" >}}/)
+- [Telegraf](/influxdb/cloud-serverless/write-data/use-telegraf/)
 - [InfluxDB client libraries](/influxdb/cloud-serverless/api-guide/client-libraries/)
 
 This tutorial walks you through the fundamental of using **line protocol** to write
@@ -145,6 +145,7 @@ line protocol above to InfluxDB.
 [InfluxDB API](#)
 [Python](#)
 [Go](#)
+[Telegraf](#)
 {{% /tabs %}}
 
 {{% tab-content %}}
@@ -539,7 +540,31 @@ go run ./write.go
 
 <!------------------------------- END GO CONTENT ------------------------------>
 {{% /tab-content %}}
+{{% tab-content %}}
+<!------------------------------- BEGIN TELEGRAF CONTENT ------------------------------>
+[Telegraf](/{{< latest "telegraf" >}}/) with the [`file` input plugin](/{{< latest "telegraf" >}}/plugins/#input-file) consume line protocol or CSV, and then use the `influxdb_v2` output plugin to write the data to InfluxDB.
 
+The following example shows a minimal [`outputs.influxdb_v2`](/{{< latest "telegraf" >}}/plugins/#output-influxdb_v2) configuration for writing data to InfluxDB Cloud Serverless:
+
+```toml
+[[outputs.influxdb_v2]]
+  urls = ["http://localhost:8086"]
+  token = "${INFLUX_TOKEN}"
+  organization = "ORG_ID"
+  bucket = "BUCKET_NAME"
+```
+
+Replace the following:
+
+- **`ORG_ID`**: your InfluxDB Serverless [organization](/influxdb/cloud-serverless/admin/organizations/) ID.
+- **`BUCKET_NAME`**: the name of the [bucket](/influxdb/cloud-serverless/admin/buckets/) to write to.
+
+In the example, **`INFLUX_TOKEN`** is an environment variable assigned to an InfluxDB API token that has _write_ permission to the bucket.
+
+The Telegraf `file` input plugin and the `output-influxdb_v2` output plugin provide many options for reading and writing data.
+To learn more, see how to [use Telegraf to write data](/influxdb/cloud-serverless/write-data/use-telegraf/).
+<!------------------------------- END TELEGRAF CONTENT ------------------------------>
+{{% /tab-content %}}
 {{< /tabs-wrapper >}}
 
 {{< expand-wrapper >}}

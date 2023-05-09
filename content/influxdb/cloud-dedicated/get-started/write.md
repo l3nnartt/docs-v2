@@ -137,13 +137,13 @@ home,room=Kitchen temp=22.7,hum=36.5,co=26i 1641067200
 
 Use the **InfluxDB v2 HTTP API** or **InfluxDB client libraries** to write the
 line protocol above to InfluxDB.
-The following examples show how to use the **Python** and **Go** client libraries to write line protocol.
 
 {{< tabs-wrapper >}}
 {{% tabs %}}
 [InfluxDB API](#)
 [Python](#)
 [Go](#)
+[Telegraf](#)
 {{% /tabs %}}
 
 {{% tab-content %}}
@@ -463,6 +463,30 @@ go run ./write.go
 {{% /influxdb/custom-timestamps %}}
 
 <!------------------------------- END GO CONTENT ------------------------------>
+{{% /tab-content %}}
+{{% tab-content %}}
+<!------------------------------- BEGIN TELEGRAF CONTENT ------------------------------>
+[Telegraf](/{{< latest "telegraf" >}}/) with the [`file` input plugin](/{{< latest "telegraf" >}}/plugins/#input-file) consume line protocol or CSV, and then use the `influxdb_v2` output plugin to write the data to InfluxDB.
+
+The following example shows a minimal [`outputs.influxdb_v2`](/{{< latest "telegraf" >}}/plugins/#output-influxdb_v2) configuration for writing data to your InfluxDB Cloud Dedicated cluster:
+
+```toml
+[[outputs.influxdb_v2]]
+  urls = ["https://cluster-id.influxdb.io"]
+  token = "${INFLUX_TOKEN}"
+  organization = ""
+  bucket = "DATABASE_NAME"
+```
+
+Replace the following:
+
+- **`DATABASE_NAME`**: your InfluxDB Cloud Dedicated [database](/influxdb/cloud-dedicated/admin/databases/)
+
+In the example, **`INFLUX_TOKEN`** is an environment variable assigned to an InfluxDB API token that has _write_ permission to the bucket.
+
+The Telegraf `file` input plugin and the `output-influxdb_v2` output plugin provide many options for reading and writing data.
+To learn more, see how to [use Telegraf to write CSV data](/influxdb/cloud-dedicated/write-data/csv/telegraf/).
+<!------------------------------- END TELEGRAF CONTENT ------------------------------>
 {{% /tab-content %}}
 {{< /tabs-wrapper >}}
 
