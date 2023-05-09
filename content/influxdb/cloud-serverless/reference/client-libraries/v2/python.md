@@ -109,3 +109,7 @@ write_api = client.write_api(write_options=SYNCHRONOUS)
 p = influxdb_client.Point("my_measurement").tag("location", "Prague").field("temperature", 25.3)
 write_api.write(bucket=bucket, org=org, record=p)
 ```
+
+## Query data from InfluxDB with Python
+
+To use query your InfluxDB Cloud Serverless bucket, use a Python [Flight SQL client with gRPC](/influxdb/cloud-dedicated/reference/client-libraries/flight-sql/).

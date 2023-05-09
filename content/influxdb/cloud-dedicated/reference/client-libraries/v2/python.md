@@ -111,4 +111,4 @@ write_api.write(bucket=database, org=org, record=p)
 ## Query data from InfluxDB with Python
 
 The InfluxDB v2 Python client can't query InfluxDB Cloud Dedicated.
-To query your dedicated instance, use a [Flight SQL client with gRPC](/influxdb/cloud-dedicated/reference/client-libraries/flight-sql/).
+To query your dedicated instance, use a Python [Flight SQL client with gRPC](/influxdb/cloud-dedicated/reference/client-libraries/flight-sql/).
