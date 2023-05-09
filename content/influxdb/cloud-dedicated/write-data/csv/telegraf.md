@@ -75,7 +75,7 @@ metrics from different sources and writes them to specified destinations.
     - **url**: a list (`[]`) containing your InfluxDB Cloud Dedicated cluster URL using the HTTPS
       protocol:
 
-      ```
+      ```toml
       ["https://cluster-id.influxdb.io"]
       ```
     - **token**: a [database token](/influxdb/cloud-dedicated/admin/tokens/) with permission to write to the database.

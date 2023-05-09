@@ -32,7 +32,7 @@ For a list of available plugins, see [Telegraf plugins](/{{< latest "telegraf" >
 
 ## Basic Telegraf usage
 
-Telegraf is a plugin-based agent with plugins are that enabled and configured in
+Telegraf is a plugin-based agent with plugins that are enabled and configured in
 your Telegraf configuration file (`telegraf.conf`).
 Each Telegraf configuration must **have at least one input plugin and one output plugin**.
 
@@ -40,17 +40,14 @@ Telegraf input plugins retrieve metrics from different sources.
 Telegraf output plugins write those metrics to a destination.
 
 Use the [`outputs.influxdb_v2`](/{{< latest "telegraf" >}}/plugins/#output-influxdb_v2) to write metrics collected by Telegraf to InfluxDB.
+The following example shows how to configure the `outputs.influxdb_v2` plugin to write to InfluxDB Cloud Serverless:
 
 ```toml
-# ...
-
 [[outputs.influxdb_v2]]
-  urls = ["http://localhost:8086"]
+  urls = ["https://cloud2.influxdata.com"]
   token = "${INFLUX_TOKEN}"
   organization = "ORG_ID"
   bucket = "BUCKET_NAME"
-
-# ...
 ```
 
 Replace the following:
