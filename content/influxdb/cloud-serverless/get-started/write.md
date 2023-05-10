@@ -548,7 +548,7 @@ The following example shows a minimal [`outputs.influxdb_v2`](/{{< latest "teleg
 
 ```toml
 [[outputs.influxdb_v2]]
-  urls = ["http://localhost:8086"]
+  urls = ["https://cloud2.influxdata.com"]
   token = "${INFLUX_TOKEN}"
   organization = "ORG_ID"
   bucket = "BUCKET_NAME"
