@@ -162,6 +162,8 @@ The following example shows a minimal [`outputs.influxdb_v2`](/{{< latest "teleg
   bucket = "DATABASE_NAME"
 ```
 
+In the example, **`INFLUX_TOKEN`** is an environment variable assigned to a [database token](/influxdb/cloud-dedicated/admin/tokens/) that has _write_ permission to the database.
+
 {{% note %}}
 ##### Write to InfluxDB v1.x and v2.6
 
