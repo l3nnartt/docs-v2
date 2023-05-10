@@ -157,7 +157,7 @@ The following example shows a minimal [`outputs.influxdb_v2`](/{{< latest "teleg
 ```toml
 [[outputs.influxdb_v2]]
   urls = ["https://cluster-id.influxdb.io"]
-  token = "DATABASE_TOKEN"
+  token = "${INFLUX_TOKEN}"
   organization = ""
   bucket = "DATABASE_NAME"
 ```
