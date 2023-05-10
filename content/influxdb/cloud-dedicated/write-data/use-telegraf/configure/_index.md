@@ -14,7 +14,7 @@ weight: 101
 Telegraf is a plugin-based agent with plugins are that enabled and configured in
 your Telegraf configuration file (`telegraf.conf`).
 
-The following are options you have for creating Telegraf configuration files
+The following options are available for creating Telegraf configuration files
 that work with InfluxDB {{< current-version >}}.
 
 {{< children >}}
