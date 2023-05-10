@@ -46,7 +46,7 @@ Use the [`outputs.influxdb_v2`](/{{< latest "telegraf" >}}/plugins/#output-influ
 [[outputs.influxdb_v2]]
   urls = ["http://localhost:8086"]
   token = "${INFLUX_TOKEN}"
-  organization = "ORG_ID"
+  organization = ""
   bucket = "BUCKET_NAME"
 
 # ...
