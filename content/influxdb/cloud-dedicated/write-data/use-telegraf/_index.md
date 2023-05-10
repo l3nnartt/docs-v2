@@ -54,8 +54,7 @@ Use the [`outputs.influxdb_v2`](/{{< latest "telegraf" >}}/plugins/#output-influ
 
 Replace the following:
 
-- **`ORG_ID`**: your InfluxDB Dedicated [organization](/influxdb/cloud-dedicated/admin/organizations/) ID.
-- **`BUCKET_NAME`**: the name of the [bucket](/influxdb/cloud-dedicated/admin/buckets/) to write to.
+- **`DATABASE_NAME`**: your InfluxDB Cloud Dedicated [database](/influxdb/cloud-dedicated/admin/databases/)
 
 In the example, **`INFLUX_TOKEN`** is an environment variable assigned to an InfluxDB API token with _write_ permission to the bucket.
 
